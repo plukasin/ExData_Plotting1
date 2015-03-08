@@ -1,11 +1,19 @@
 ## load data
-Pit <- read.csv("source2.csv")
+source("loadData.R")
+
+## plot to PNG 
+png(filename="plot2.png",width=640,height=480)
+
 ## plot on screen 
-plot(Pit$Time ,Pit$Global_active_power, type="n", ylab="Global Active Power (kilowatts)", xlab="")
-lines(Pit$Time ,Pit$Global_active_power) 
+plot(targetData$Time,
+     targetData$Global_active_power,
+     type="l", 
+     ylab="Global Active Power (kilowatts)",
+     xlab="")
+
 
 ## save to file 
 
-dev.copy(png, file="plot2.png", width = 480, height = 480)
+
 dev.off()
 

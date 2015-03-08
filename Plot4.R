@@ -1,28 +1,37 @@
 ## load data
-Pit <- read.csv("source2.csv")
+source("loadData.R")
+## plot to PNG 
+png(filename="plot4.png",width=640,height=480)
 
-
+par(mfrow = c(2, 2))
 ## plot on screen 
-plot(Pit$Time ,Pit$Global_active_power, type="n", ylab="Global Active Power (kilowatts)", xlab="")
-lines(Pit$Time ,Pit$Global_active_power) 
+plot(targetData$Time,
+     targetData$Global_active_power,
+     type="l", 
+     ylab="Global Active Power (kilowatts)",
+     xlab="")
+
 
 ## plot 2 on screen 
-plot(Pit$Time ,Pit$Voltage, type="n", ylab="Voltage", xlab="datetime")
-lines(Pit$Time ,Pit$Voltage) 
+plot(targetData$Time ,targetData$Voltage, type="n", ylab="Voltage", xlab="datetime")
+lines(targetData$Time ,targetData$Voltage) 
 
-## plot on screen 
-plot(Pit$Time ,Pit$Sub_metering_1, type="n", ylab="Energy sub metering", xlab="")
-lines(Pit$Time ,Pit$Global_active_power) 
-lines(Pit$Time ,Pit$Sub_metering_1, col ="black") 
-lines(Pit$Time ,Pit$Sub_metering_2, col ="red") 
-lines(Pit$Time ,Pit$Sub_metering_3, col ="blue") 
-legend("topright", pch="-", cex=0.6, col=c("black","red","blue"), 
-       legend=names(Pit[8:10]))
+## plot 3 on screen 
+plot(targetData$Time ,targetData$Sub_metering_1, type="n", ylab="Energy sub metering", xlab="")
+lines(targetData$Time ,targetData$Sub_metering_1, col ="black") 
+lines(targetData$Time ,targetData$Sub_metering_2, col ="red") 
+lines(targetData$Time ,targetData$Sub_metering_3, col ="blue") 
+legend("topright", 
+       lty="solid", 
+       lwd = 1,
+       col=c("black","red","blue"), 
+       legend=names(targetData[7:9]))
+
 ## plot 4 on screen 
-plot(Pit$Time ,Pit$Global_reactive_power, type="n", ylab="Global_reactive_power", xlab="datetime")
-lines(Pit$Time ,Pit$Global_reactive_power) 
+plot(targetData$Time ,targetData$Global_reactive_power, type="n", ylab="Global_reactive_power", xlab="datetime")
+lines(targetData$Time ,targetData$Global_reactive_power) 
 
 ## save to file 
 
-dev.copy(png, file="plot4.png", width = 480, height = 480)
+
 dev.off()
